@@ -6,7 +6,7 @@ resource "aws_instance" "ec2_example" {
 
     ami = var.ami
     instance_type = var.type
-    vpc_security_group_ids = [aws_security_group.main.id]
+    vpc_security_group_ids = [aws_security_group.Deepanshu.id]
     associate_public_ip_address = true
 
   user_data = <<-EOF
@@ -18,7 +18,7 @@ resource "aws_instance" "ec2_example" {
       EOF
 }
 
-resource "aws_security_group" "main" {
+resource "aws_security_group" "Deepanshu" {
     name        = "EC2-webserver-SG111Deepanshu"
   description = "Webserver for EC2 Instances"
 
@@ -27,13 +27,6 @@ resource "aws_security_group" "main" {
     protocol    = "TCP"
     to_port     = 80
     cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    protocol    = "TCP"
-    to_port     = 22
-    cidr_blocks = ["115.97.103.44/32"]
   }
 
   egress {
